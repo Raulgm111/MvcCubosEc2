@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MvcCubosEc2.Models.Cubo>
+
+@{
+    ViewData["Title"] = "GetCubos";
+}
+
+<h1>GetCubos</h1>
+
+<p>
+    <a class="btn btn-info" asp-area="" asp-controller="Cubos" asp-action="CreateCubo">Crear Cubo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCubo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCubo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.Imagen)" width="150"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Precio)
+            </td>
+            <td>
+                    <a asp-controller="Cubos" asp-action="FindCubo" asp-route-id="@item.IdCubo" class="btn btn-info"> Detalles </a>
+                    <a asp-controller="Cubos" asp-action="UpdateCubo" asp-route-id="@item.IdCubo" class="btn btn-success"> Update </a>
+                    <a asp-controller="Cubos" asp-action="DeleteCubo" asp-route-id="@item.IdCubo" class="btn btn-warning"> Eliminar </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
